@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¿Me perdonas?</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #ffffff;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            width: 65%;
+            max-width: 90%;
+            min-width: 300px;
+            transition: all 0.3s ease;
+        }
+        .container:hover {
+            transform: scale(1.02);
+        }
+        h1 {
+            font-size: 2.5em;
+            color: #333;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        #content {
+            height: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        #content img {
+            max-width: 100%;
+            max-height: 100%;
+            display: none;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+        #content img.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        .button-container {
+            margin-top: 20px;
+        }
+        button {
+            font-size: 18px;
+            padding: 12px 25px;
+            margin: 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 8px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+        #no {
+            background-color: #ff4d4d;
+            color: white;
+            transform: scale(1);
+        }
+        #si {
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>¿Me perdonas?</h1>
+
+        <div id="content">
+            <img src="https://media.tenor.com/2GWRgzZMaToAAAAM/sadmeow.gif" alt="GIF" class="active">
+            <img src="https://i.pinimg.com/originals/53/ba/5d/53ba5d72eba345925d177d260e9e7e6a.gif" alt="GIF">
+            <img src="https://i.pinimg.com/736x/24/72/6f/24726f4405fec56509ab7097f20013df.jpg" alt="JPG">
+        </div>
+
+        <div class="button-container">
+            <button id="no" onclick="clickNo()">No</button>
+            <button id="si" onclick="clickSi()">Sí</button>
+        </div>
+    </div>
+
+    <script>
+        let noClicks = 0;
+        let noButton = document.getElementById("no");
+        let siButton = document.getElementById("si");
+        let content = document.getElementById("content");
+        let images = content.getElementsByTagName("img");
+
+        // Función para el botón "No"
+        function clickNo() {
+            noClicks++;
+            if (noClicks <= 12) {
+                noButton.style.transform = `scale(${1 - noClicks * 0.1})`; // Se va haciendo pequeño
+                if (noClicks > 2) {
+                    moverBoton(noButton); // Mover botón a partir del tercer clic
+                }
+                if (noClicks === 12) {
+                    noButton.style.display = "none"; // Desaparece al dar 12 clics
+                }
+            }
+            mostrarAleatorio(); // Cambia el contenido
+        }
+
+        // Función para el botón "Sí"
+        function clickSi() {
+            let scale = parseFloat(siButton.style.transform.replace('scale(', '').replace(')', '')) || 1;
+            siButton.style.transform = `scale(${scale + 0.1})`; // Se hace más grande al hacer clic
+        }
+
+        // Función para mostrar contenido multimedia aleatorio
+        function mostrarAleatorio() {
+            const indexAleatorio = Math.floor(Math.random() * images.length);
+            for (let i = 0; i < images.length; i++) {
+                images[i].classList.remove("active");
+            }
+            images[indexAleatorio].classList.add("active");
+        }
+
+        // Función para mover el botón "No"
+        function moverBoton(boton) {
+            boton.style.position = "absolute";
+            boton.style.top = `${Math.random() * (window.innerHeight - 50)}px`;
+            boton.style.left = `${Math.random() * (window.innerWidth - 100)}px`;
+        }
+    </script>
+</body>
+</html>

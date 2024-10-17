@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plantilla</title> <!-- Cambia por el que quieras. -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: radial-gradient(circle, #ffdddd, #ddffff, #ffcccc);
+            height: 100vh;
+            place-items: start center;
+            color: #222;
+        }
+        /* Color del texto (Reemplza "#FF69B4" por el color que quieras) */
+       .content p { 
+           color: #FF69B4; /* Color rosa en codigo hexadecimal. Si quieres cambiar el color, busca colores en codigo hexadeximal y reemplaza */
+           
+       }
+       
+    /* Este bloque define el color del encabezado. Por el momento, está comentado. Para que el color sea aplicado, se debe eliminar el comentario (/*). 
+      h1 {
+           color: #FF0000; 
+        } */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            background-color: #ffe4e1;
+            padding: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .content {
+            max-width: 800px;
+            padding: 30px;
+            border-radius: 15px;
+            font-size: 1.1rem;
+            background-color: #fff;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            margin-top: 80px;
+        }
+
+        .content h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .heart-icon {
+            position: fixed;
+            top: 50%;
+            right: 20px;
+            font-size: 2.5rem;
+            color: #ff69b4;
+            cursor: pointer;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            z-index: 10;
+        }
+
+        .modal.show {
+            display: block;
+        }
+
+        .modal .media-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .modal img {
+            width: 300px;
+            border-radius: 8px;
+        }
+
+        .modal audio {
+            margin-top: 20px;
+            width: 300px;
+        }
+
+        .close-modal {
+            margin-top: 15px;
+            cursor: pointer;
+            padding: 10px 20px;
+            background-color: #ff69b4;
+            color: white;
+            border: none;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <header> <!-- Reemplaza "[su nombre]" por el nombre que quieras -->
+        <h1>Para ti, [su nombre]</h1>
+    </header>
+
+    <!-- Contenido principal -->
+    <div class="content">  <!-- Desde "<p>" a "</p>" es la parte del texto-->
+        <h1>Texto de ejemplo generado por IA (reemplaza por el tuyo) <!-- reemplaza esto por lo que quieras --> </h1>
+        <p>Desde el primer momento en que te conocí, supe que había algo mágico en ti. Algo en tu sonrisa, en la manera en que tus ojos brillan cuando hablas de lo que amas, en la forma en que haces que todo a tu alrededor parezca más brillante, más cálido. No se trata solo de las palabras que dices, sino de cómo las dices, con un corazón abierto, lleno de bondad y compasión.
+
+        Cada día a tu lado es una aventura, una oportunidad para descubrir una nueva razón por la que estoy agradecido por ti. Eres como una brisa suave en un día de verano, un rayo de luz en medio de la oscuridad, y siempre sabes cómo hacer que incluso los momentos más ordinarios se sientan extraordinarios. Cada conversación, cada risa compartida, cada pequeño gesto, fortalece más el vínculo que tenemos. Tus acciones diarias me inspiran a ser una mejor versión de mí mismo.
+
+        Admiro tu fuerza, tu valentía, y la forma en que enfrentas los desafíos de la vida con una sonrisa en el rostro. No importa cuán difíciles sean las circunstancias, siempre encuentras una manera de seguir adelante, de inspirar a los que te rodean con tu determinación y tu esperanza. Cada reto que superas es un recordatorio de tu resiliencia inquebrantable. No solo me maravilla tu capacidad para adaptarte, sino también la forma en que mantienes tu corazón abierto incluso en los momentos más oscuros.
+
+        Me has enseñado tanto sobre lo que significa amar sin reservas, sobre la importancia de estar presente, de escuchar, de cuidar profundamente. Has hecho que mi mundo sea más hermoso, más completo, y por eso, estaré eternamente agradecido. Desde que apareciste en mi vida, he aprendido que el verdadero amor no solo se trata de momentos felices, sino también de apoyarse mutuamente en las dificultades. Gracias a ti, he descubierto que el amor genuino es ese que se muestra a diario, en los pequeños detalles que muchos pasan por alto.
+
+        Quiero que sepas que siempre estaré aquí para ti, en cada paso del camino, celebrando tus logros, apoyándote en tus desafíos y recordándote cuánto vales. Eres una persona única, y el mundo es un lugar mejor simplemente porque tú existes. Incluso en esos días en los que las cosas parecen abrumadoras, quiero que recuerdes lo especial que eres, no solo para mí, sino para todos los que tienen la suerte de conocerte. Eres un faro de luz, y siempre te recordaré lo increíble que eres.
+
+        Con todo mi cariño y admiración, [tu nombre]
+</p>
+    </div>
+
+    <div class="heart-icon" onclick="openModal()">💘</div>
+
+    <!-- Modal con contenido multimedia -->
+    <div id="mediaModal" class="modal">
+        <div class="media-section">
+            <img src="https://media.tenor.com/1cw2Ydij5ZoAAAAj/sanrio.gif" // Sube tu archivo a Dropbox (Recuerda reemplazar el "0" final por "1") y cambia por la URL de tu gif. alt="GIF de Sanrio">
+            <audio controls>
+                <source src="https://www.dropbox.com/scl/fi/tn3sey2nup3f19cjq0in8/Cuco-Piel-Canela-Audio.webm?rlkey=jnhhk2yvewvdi8spulb3vmx0r&st=a84mk318&dl=1" // Cambia por la URL de tu audio si quieres.  type="audio/mpeg">
+                Tu navegador no soporta el elemento de audio.
+            </audio>
+        </div>
+        <button class="close-modal" onclick="closeModal()">Cerrar</button>
+    </div>
+
+    <script>
+        function openModal() {
+            document.getElementById('mediaModal').classList.add('show');
+        }
+
+        function closeModal() {
+            document.getElementById('mediaModal').classList.remove('show');
+        }
+    </script>
+    
+</body>
+</html>
